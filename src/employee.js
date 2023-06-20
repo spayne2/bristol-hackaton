@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import Logo from './Images/Persona_Sync_Logo.png';
 
 
 const Employee = () => {
@@ -37,11 +38,26 @@ const Employee = () => {
         setOtherRole(otherSelectedRole);
     };
 
+    const [jobFamily, setJobFamily] = useState('');
+    const [otherJobFamily, setOtherJobFamily] = useState('');
+
+    const handleJobFamilyChange = (event) => {
+        const selectedJobFamily = event.target.value;
+        setJobFamily(selectedJobFamily);
+    };
+
+    const handleOtherJobFamilyChange = (event) => {
+        const otherSelectedJobFamily = event.target.value;
+        setOtherJobFamily(otherSelectedJobFamily);
+    };
+
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className="text-black shadow-xl p-4 px-14 m-4 mx-10 rounded-lg bg-gray-200">
+            {/* <div className="text-black shadow-xl p-4 px-14 m-4 mx-10 rounded-lg bg-gray-200">
                 <h1 className='text-5xl font-thin p-4'>Persona Sync</h1>
-            </div>
+            </div> */}
+
+            <img src={Logo} alt="Logo" className="w-1/2 p-4 px-14 m-4 mx-10 rounded-lg bg-gray-200" />
 
             <div className='text-3xl font-mono m-5'>
                 <h2>EmployeeId : E98388</h2>
@@ -397,7 +413,10 @@ const Employee = () => {
                     <label className="block font-bold mb-2">
                         What is your current role?
                     </label>
-                    <select name='question22' value={role} onChange={handleRoleChange} className="block w-full bg-gray-200 border border-gray-200 p-2 rounded">
+                    <select
+                        name='question22' value={role} onChange={handleRoleChange}
+                        className="block w-full bg-gray-200 border border-gray-200 p-2 rounded"
+                    >
                         <option value="">Select a role</option>
                         <option value="Back-end Developer">Back-end Developer</option>
                         <option value="Branch Manager">Branch Manager</option>
@@ -435,11 +454,37 @@ const Employee = () => {
                             className="block w-full bg-gray-200 border border-gray-200 p-2 rounded mt-2"
                         />
                     )}
+                </div>
 
-
-
-
-
+                <div className="mb-4">
+                    <label className="block font-bold mb-2">What is your job family?</label>
+                    <select
+                        name="question23"
+                        value={jobFamily}
+                        onChange={handleJobFamilyChange}
+                        className="block w-full bg-gray-200 border border-gray-200 p-2 rounded"
+                    >
+                        <option value="">Select a job family</option>
+                        <option value="Commercial Banking">Commercial Banking</option>
+                        <option value="Finance and Accounting">Finance and Accounting</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Marketing and Communications">Marketing and Communications</option>
+                        <option value="Operations and Support">Operations and Support</option>
+                        <option value="Retail Banking">Retail Banking</option>
+                        <option value="Risk and Compliance">Risk and Compliance</option>
+                        <option value="Technology and IT">Technology and IT</option>
+                        <option value="Transport Platform">Transport Platform</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    {jobFamily === 'Other' && (
+                        <input
+                            type="text"
+                            placeholder="Please specify your job family"
+                            value={otherJobFamily}
+                            onChange={handleOtherJobFamilyChange}
+                            className="block w-full bg-gray-200 border border-gray-200 p-2 rounded mt-2"
+                        />
+                    )}
                 </div>
 
 
